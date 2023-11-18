@@ -4,9 +4,12 @@ import { useGallery } from './src/use-gallery';
 import MyDropDownPicker from './src/MyDropDownPicker';
 import TextInputModal from './src/TextInputModal';
 import BigImgModal from './src/BigImgModal';
+import useRewardsAd from './src/use-rewards-ad';
 
 const width = Dimensions.get('screen').width;
 const columnSize = width / 3;
+
+// ca-app-pub-3869122967357561/5920765307
 
 export default function App() {
 
@@ -40,10 +43,31 @@ export default function App() {
     showNextArrow
   } = useGallery();
 
+  // const { loadRewardAd } = useRewardsAd();
+
   const onPressOpenGallery = pickImage;
   const onLongPressImage = (imageId) => deleteImage(imageId);
+
+  const onPressWatchAd = () => {
+    // loadRewardAd();
+  }
+
   const onPressAddAlbum = () => {
-    openTextInputModal();
+
+    if (albums.length >= 2) {
+      Alert.alert('광고를 시청해야 앨범을 추가할 수 있습니다.', '', [
+        {
+          style: 'cancel',
+          text: '닫기'
+        },
+        {
+          text: '광고 시청',
+          onPress: onPressWatchAd
+        }
+      ])
+    } else {
+      openTextInputModal();
+    }
   }
   const onSubmitEditing = () => {
     if (!albumTitle)

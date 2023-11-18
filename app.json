@@ -15,7 +15,10 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "config" : {
+        "googleMobileAdsAppId" : "ca-app-pub-3869122967357561~9437376475"
+      }
     },
     "android": {
       "adaptiveIcon": {
