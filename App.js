@@ -1,13 +1,11 @@
 import { StatusBar } from 'expo-status-bar';
-import { Alert, Button, Dimensions, FlatList, Image, Platform, SafeAreaView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Alert, Platform, SafeAreaView, StyleSheet } from 'react-native';
 import { useGallery } from './src/use-gallery';
 import MyDropDownPicker from './src/MyDropDownPicker';
 import TextInputModal from './src/TextInputModal';
 import BigImgModal from './src/BigImgModal';
 import useRewardsAd from './src/use-rewards-ad';
-
-const width = Dimensions.get('screen').width;
-const columnSize = width / 3;
+import ImageList from './src/imageList';
 
 // ca-app-pub-3869122967357561/5920765307
 
@@ -118,30 +116,7 @@ export default function App() {
     moveToNextImage();
   }
 
-  const renderItem = ({item : image, idx}) => {
-    const {id, uri} = image;
-    if (id === -1) {
-      return (
-        <TouchableOpacity 
-          onPress={onPressOpenGallery}
-          style={{
-            width: columnSize, 
-            height: columnSize, 
-            backgroundColor: 'lightgrey',
-            justifyContent: 'center',
-            alignItems: 'center'
-          }}>
-          <Text style={{ fontWeight: '100', fontSize: 45}}>+</Text>
-        </TouchableOpacity>
-      )
-    }
-
-    return (
-      <TouchableOpacity onPress={() => onPressImage(image)} onLongPress={() => onLongPressImage(id)}>
-        <Image source={{ uri }} style={{ width: columnSize, height: columnSize}}/>
-      </TouchableOpacity>
-    )
-  }
+  
 
   return (
     <SafeAreaView style={styles.container}>
@@ -177,11 +152,11 @@ export default function App() {
       />
 
       {/* 이미지 리스트 */}
-      <FlatList
-        data={imagesWithAddButton}
-        renderItem={renderItem}
-        numColumns={3}
-        style={{ zIndex: -1 }}
+      <ImageList
+        imagesWithAddButton={imagesWithAddButton}
+        onPressOpenGallery={onPressOpenGallery}
+        onPressImage={onPressImage}
+        onLongPressImage={onLongPressImage}
       />
     </SafeAreaView>
   );
