@@ -5,7 +5,7 @@ import MyDropDownPicker from './src/MyDropDownPicker';
 import TextInputModal from './src/TextInputModal';
 import BigImgModal from './src/BigImgModal';
 import useRewardsAd from './src/use-rewards-ad';
-import ImageList from './src/imageList';
+import ImageList from './src/ImageList';
 
 // ca-app-pub-3869122967357561/5920765307
 
